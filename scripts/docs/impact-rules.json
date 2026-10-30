@@ -1,0 +1,11 @@
+{
+  "src/organization.ts": ["docs/user-guide.md", "docs/testing.md"],
+  "src/engine.ts": ["docs/architecture.md", "docs/user-guide.md"],
+  "src/auth.ts": ["docs/setup.md", "SECURITY.md"],
+  "src/picker.ts": ["docs/feasibility.md", "docs/architecture.md"],
+  "src/takeout.ts": ["docs/user-guide.md", "docs/known-limitations.md"],
+  "src/contracts.ts": ["docs/architecture.md"],
+  "src/ui.tsx": ["docs/user-guide.md"],
+  "package.json": ["docs/packaging.md"],
+  ".github/": ["CONTRIBUTING.md"]
+}

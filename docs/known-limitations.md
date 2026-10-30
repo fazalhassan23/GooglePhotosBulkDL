@@ -1,0 +1,11 @@
+# Known limitations
+
+- Experimental, not a qualified production release. Automated fixtures are distinct from real-account and desktop platform verification. See testing for recorded results.
+- Google library-wide automatic date discovery is unsupported. Picker only processes explicitly selected media. Expired sessions/base URLs can require reselection; URLs are refreshed during preview, not continuously during long transfers.
+- Picker images exclude GPS/location metadata and are not guaranteed byte-identical originals. Videos are transcoded. Motion photos import only the selected image or video representation, not guaranteed complete live-photo pairs.
+- Takeout accepts extracted folders, not archives or cloud export links. All archive parts must be extracted first. Exact sidecar matching only; ambiguous truncated or numbered names and metadata without a trusted timezone can remain undated. Raw format recognition is limited to the documented extension set in source.
+- Source/target filesystem trees must remain stable. No hostile-directory certification, network/removable filesystem qualification, long Windows path certification, or low-disk certification. Hard-link finalization excludes FAT/exFAT and some providers; such jobs fail without overwriting output or removing sources.
+- Job settings are not persisted across restarts; the manifest preserves completed transfers. Individual files restart rather than HTTP range resume. Crash cleanup is manual. Missing timestamps are excluded rather than assigned guessed dates.
+- Discovery holds selected media in memory. Large-library performance and EXIF parsing responsiveness need qualification; EXIF work runs in the main process, and some CPU parsing can briefly delay UI IPC. No million-item claim.
+- Progress reports completed files and counts, not byte-level throughput or ETA. Error lists show the first 100 per job. No separate exportable failure report, logs, or built-in credential configuration editor exists.
+- Secure storage, Google OAuth/consent, API quotas, and packaging prerequisites are external configuration requirements. Windows, macOS and Ubuntu interactive qualification remains outstanding until separately recorded. No auto-updates, signed installers, releases or deployment.

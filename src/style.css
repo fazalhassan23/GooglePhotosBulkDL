@@ -1,0 +1,151 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #203831;
+  background: #f3f5ef;
+  font-size: 16px;
+  line-height: 1.55;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+main {
+  max-width: 1080px;
+  margin: auto;
+  padding: 40px;
+}
+header {
+  padding: 12px 0 24px;
+  max-width: 760px;
+}
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: #446456;
+  font-weight: 700;
+}
+h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  margin: 12px 0;
+}
+h2 {
+  font-size: 21px;
+  margin: 0 0 18px;
+}
+h3 {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+section {
+  background: #fff;
+  border: 1px solid #d9e0d6;
+  border-radius: 14px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+article {
+  background: #f7f8f4;
+  padding: 20px;
+  border-radius: 10px;
+}
+p {
+  margin: 10px 0 16px;
+}
+small {
+  display: block;
+  margin-top: 12px;
+  color: #52655b;
+}
+button {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  background: #275c48;
+  color: white;
+  border: 1px solid #275c48;
+  padding: 10px 14px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.48;
+  cursor: default;
+}
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #af6b19;
+  outline-offset: 3px;
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.fields {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+input:not([type="checkbox"]) {
+  display: block;
+  font: inherit;
+  padding: 9px;
+  border: 1px solid #849b8c;
+  border-radius: 6px;
+  margin: 6px 0 12px;
+  width: 100%;
+}
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.path {
+  overflow-wrap: anywhere;
+  color: #53665c;
+  font-size: 14px;
+}
+.review {
+  background: #edf4e9;
+  border-radius: 8px;
+  padding: 18px;
+  margin: 18px 0;
+}
+progress {
+  width: 100%;
+  accent-color: #275c48;
+}
+.error {
+  border-left: 4px solid #a02d24;
+  padding: 12px;
+  color: #852b25;
+  background: #fff1ed;
+}
+footer {
+  font-size: 13px;
+  color: #53665c;
+  text-align: center;
+  padding: 12px;
+}
+@media (max-width: 760px) {
+  main {
+    padding: 20px;
+  }
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
