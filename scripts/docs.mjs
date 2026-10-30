@@ -39,7 +39,10 @@ if (command === "generate") {
   console.log("Documentation enforcement self-tests passed.");
 } else if (command === "check") {
   assert.equal(
-    await readFile("docs/generated/version.md", "utf8"),
+    (await readFile("docs/generated/version.md", "utf8")).replaceAll(
+      "\r\n",
+      "\n",
+    ),
     reference,
     "Run npm run docs:generate",
   );

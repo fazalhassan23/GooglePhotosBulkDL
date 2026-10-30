@@ -25,9 +25,9 @@ export class Auth {
   private get file() {
     return path.join(this.directory, "credentials.bin");
   }
-  private secure() {
+  private async secure() {
     if (
-      !safeStorage.isEncryptionAvailable() ||
+      !(await safeStorage.isAsyncEncryptionAvailable()) ||
       (process.platform === "linux" &&
         safeStorage.getSelectedStorageBackend() === "basic_text")
     )
@@ -36,11 +36,12 @@ export class Auth {
       );
   }
   async restore() {
-    this.secure();
+    await this.secure();
     try {
-      const s = savedSchema.parse(
-        JSON.parse(safeStorage.decryptString(await readFile(this.file))),
+      const decrypted = await safeStorage.decryptStringAsync(
+        await readFile(this.file),
       );
+      const s = savedSchema.parse(JSON.parse(decrypted.result));
       this.refresh = s.refresh;
       this.email = s.email;
       this.subject = s.subject;
@@ -92,7 +93,7 @@ export class Auth {
     if (t.refresh_token) this.refresh = t.refresh_token;
   }
   async signIn() {
-    this.secure();
+    await this.secure();
     const c = await this.config();
     await this.signOut();
     const state = randomBytes(32).toString("base64url"),
@@ -177,7 +178,7 @@ export class Auth {
       this.subject = user.sub;
       await writeFile(
         this.file,
-        safeStorage.encryptString(
+        await safeStorage.encryptStringAsync(
           JSON.stringify({
             refresh: this.refresh,
             email: this.email,

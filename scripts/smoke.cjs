@@ -16,12 +16,16 @@ app.whenReady().then(async () => {
   });
   try {
     const secure =
-      safeStorage.isEncryptionAvailable() &&
+      (await safeStorage.isAsyncEncryptionAvailable()) &&
       (process.platform !== "linux" ||
         safeStorage.getSelectedStorageBackend() !== "basic_text");
     if (secure)
       assert.equal(
-        safeStorage.decryptString(safeStorage.encryptString("fixture-only")),
+        (
+          await safeStorage.decryptStringAsync(
+            await safeStorage.encryptStringAsync("fixture-only"),
+          )
+        ).result,
         "fixture-only",
       );
     await window.loadFile(path.resolve("dist/index.html"));

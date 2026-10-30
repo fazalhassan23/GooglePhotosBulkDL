@@ -8,6 +8,8 @@ For Picker, create your own Google Cloud project, enable Google Photos Picker AP
 
 OAuth uses the system browser, a random loopback port on 127.0.0.1, PKCE S256, random state, and a three-minute timeout. Permissions are `openid`, `email` (to identify the selected account), and `photospicker.mediaitems.readonly`. Access tokens stay in memory; the refresh token and account identifier are encrypted in `credentials.bin` using Electron safeStorage. Linux basic_text and unavailable encryption are rejected. Unlock/install GNOME Keyring or KWallet as appropriate; Takeout import remains available without credentials.
 
+Credential availability, encryption and decryption use Electron's asynchronous safeStorage APIs, avoiding the deprecated synchronous operations and OS keyring blocking on the main thread.
+
 Sign out removes local credentials but does not revoke Google's consent grant. Revoke it in your Google Account's third-party access settings if desired. Sign-out is disabled while a job is running: cancel and wait first. OAuth itself completes or times out; cancelling transfer polling does not dismiss the browser.
 
 Google may require consent verification for distribution. Testing-mode refresh tokens may expire. No successful real-account OAuth or Google verification is claimed.
