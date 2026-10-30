@@ -4,6 +4,8 @@ React renders local bundled UI under a restrictive CSP. Sandboxed, context-isola
 
 Modules: `auth.ts` handles OAuth and encrypted storage; `picker.ts` handles sessions and pagination; `takeout.ts` handles local discovery; `organization.ts` handles dates and names; `engine.ts` handles bounded transfers and persistence; `network.ts` handles timeouts and retries. There are three transfer workers, four retries after an initial attempt, exponential delays and Retry-After support for temporary HTTP failures. Each HTTP header fetch has a 60-second timeout. Stream stalls and sleep behavior still require live qualification.
 
+Takeout discovery runs in a separate Node worker through `discovery.ts` and `takeout-worker.ts`. Cancellation terminates the worker, isolating filesystem enumeration and CPU-heavy metadata parsing from the Electron main event loop. The worker returns only discovered media or a sanitized error message; it has no authentication credentials.
+
 ```mermaid
 flowchart TD
   UI[React UI] --> Bridge[Validated preload IPC]

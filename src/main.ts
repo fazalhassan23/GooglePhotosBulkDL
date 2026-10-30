@@ -5,7 +5,7 @@ import { pathToFileURL } from "node:url";
 import { Auth } from "./auth";
 import { Picker } from "./picker";
 import { Engine } from "./engine";
-import { discoverTakeout } from "./takeout";
+import { discoverInWorker } from "./discovery";
 import { matches, validateOptions } from "./organization";
 import { optionsSchema, type Media, type Summary } from "./contracts";
 if (!app.requestSingleInstanceLock()) app.quit();
@@ -143,7 +143,7 @@ app.whenReady().then(async () => {
     abort = new AbortController();
     try {
       if (scope === "takeout")
-        items = await discoverTakeout(source, abort.signal);
+        items = await discoverInWorker(source, abort.signal);
       else items = await picker.list(abort.signal);
       prepared = {
         account:

@@ -4,6 +4,8 @@
   "src/auth.ts": ["docs/setup.md", "SECURITY.md"],
   "src/picker.ts": ["docs/feasibility.md", "docs/architecture.md"],
   "src/takeout.ts": ["docs/user-guide.md", "docs/known-limitations.md"],
+  "src/discovery.ts": ["docs/architecture.md", "docs/testing.md"],
+  "src/takeout-worker.ts": ["docs/architecture.md", "docs/testing.md"],
   "src/contracts.ts": ["docs/architecture.md"],
   "src/ui.tsx": ["docs/user-guide.md"],
   "package.json": ["docs/packaging.md"],
