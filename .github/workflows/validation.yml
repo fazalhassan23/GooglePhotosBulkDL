@@ -1,0 +1,40 @@
+name: Validation
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+permissions:
+  contents: read
+jobs:
+  application:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run format:check
+      - run: npm run build
+      - run: npm run smoke
+        if: runner.os == 'Windows'
+  documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: mkdir -p .tools && node -e "require('fs').writeFileSync('.tools/pr-body.md', JSON.parse(require('fs').readFileSync(process.env.GITHUB_EVENT_PATH)).pull_request.body || '')"
+      - run: npm run docs:test
+      - run: npm run docs:check -- --base origin/${{ github.base_ref }} --pr-body .tools/pr-body.md

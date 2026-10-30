@@ -1,0 +1,1 @@
+{"globs":["*.md","docs/**/*.md",".changes/*.md",".github/*.md"],"config":{"default":true,"MD013":false,"MD024":false,"MD060":false}}

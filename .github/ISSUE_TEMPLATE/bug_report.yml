@@ -1,0 +1,24 @@
+name: Bug report
+description: Report a reproducible defect without private account data
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and sanitized evidence
+      description: Never include tokens, OAuth configuration, private photos or account information.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: OS, app version, source workflow and impact
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
